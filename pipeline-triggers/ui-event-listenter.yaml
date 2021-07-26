@@ -1,0 +1,17 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: <pipline-name>-listener-interceptor
+spec:
+  namespaceSelector: {}
+  podTemplate: {}
+  resources: {}
+  serviceAccountName: pipeline
+  triggers:
+    - bindings:
+        - kind: TriggerBinding
+          ref: <pipline-name>-pipeline-binding
+      name: <listener-name>
+      template:
+        ref: <pipline-name>-trigger-template
+        # Use other Listner Template items to configur data consumed from the webhook (Git Commit, Ref, etc.)
